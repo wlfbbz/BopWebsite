@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Page</title>
+    <title>Welcome!</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Sign Up Page" />
+    <meta property="og:description" content="Join our community and stay updated!" />
+    <meta property="og:image" content="http://example.com/path/to/your/logo.png" />
+    <meta property="og:url" content="http://example.com/your-page" />
+    <meta property="og:type" content="website" />
+
+    <!-- Other tags for better link preview -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://example.com/path/to/your/logo.png">
+    <meta name="twitter:title" content="Sign Up Page">
+    <meta name="twitter:description" content="Join our community and stay updated!">
+
 </head>
 <body>
     <div class="signup-container">
         <div class="logo">
             <img src="oldlogo.png" alt="bop logo"> <!-- Replace 'logo.png' with your actual logo path -->
         </div>
+        <!--<div>
+            <p>
+                A new way to discover music!
+            </p>
+        </div>-->
         <form form method="post" action="https://script.google.com/macros/s/AKfycby-Cl44xpSdXqrAkdbeAw1KSuL_rAjjaAZRVyqT8sbxNPWmHxWBXGii97sAhxYUV9SPRA/exec" id="signupForm" name="signup">
-            <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
             <button type="submit">Sign up to be first to know</button>
         </form>
         <div id="message" style="display: none;"></div>

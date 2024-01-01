@@ -7,6 +7,11 @@ body, html {
     color: #fff;
 }
 
+/* p {
+    color: #2f2f2f;
+    margin-bottom: 30px;
+}*/
+
 .signup-container {
     display: flex;
     flex-direction: column;

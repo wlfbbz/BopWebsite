@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (request.status >= 200 && request.status < 400) {
                 var resp = JSON.parse(request.responseText);
                 if(resp.result === "success") {
-                    messageDiv.innerHTML = "Thank you for signing up!";
+                    messageDiv.innerHTML = "Thank you for signing up! Happy New Year ✨";
                     messageDiv.style.display = 'block'; // Show the message
                     signupForm.reset(); // Reset form here
                 } else {
