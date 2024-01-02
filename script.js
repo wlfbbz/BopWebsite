@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var resp = JSON.parse(request.responseText);
                 if(resp.result === "success") {
                     signupForm.style.display = 'none'; // Hide the form
-                    messageDiv.innerHTML = "Thank you for signing up! We will notify you know when it's out. Happy New Year ✨";
+                    messageDiv.innerHTML = "Thank you for signing up! We will notify you when it's out. Happy New Year ✨";
                     messageDiv.style.display = 'block'; // Show the message
                 } else {
                     messageDiv.innerHTML = "Submission failed. Please try again.";
