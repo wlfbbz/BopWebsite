@@ -7,6 +7,12 @@ body, html {
     color: #fff;
 }
 
+.logo, p {
+    text-align: center;
+    color: gray;
+    font-style: italic;
+
+}
 /* p {
     color: #2f2f2f;
     margin-bottom: 30px;
