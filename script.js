@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             // Get reCAPTCHA token
-            const token = await grecaptcha.execute('6LfI8SYrAAAAAG4h1pqLpf_ATLBJSxAzRPuOtAYN', {action: 'submit'});
+            const token = await grecaptcha.execute('6LdM9iYrAAAAAM-10_Nq1ho9xvaYKZd_fsCAeqBB', {action: 'submit'});
             
             const formData = new FormData(signupForm);
             formData.append('recaptcha_token', token);
