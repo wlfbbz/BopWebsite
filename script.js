@@ -1,49 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var signupForm = document.getElementById('signupForm');
-    var submitButton = signupForm.querySelector('button');
-    var messageDiv = document.getElementById('message');
+    const signupForm = document.getElementById('signupForm');
+    const submitButton = signupForm.querySelector('button');
+    const messageDiv = document.getElementById('message');
+    let isSubmitting = false;
 
-    signupForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+    signupForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        if (isSubmitting) return;
+        isSubmitting = true;
+
+        // Show loading state
         submitButton.classList.add('loading');
-        submitButton.disabled = true; // Disable the button to prevent multiple submissions
-        submitButton.textContent = 'Submitting...'; // Change button text
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
 
-        var formData = new FormData(signupForm);
-        var request = new XMLHttpRequest();
-        request.open('POST', signupForm.action, true);
+        try {
+            const formData = new FormData(signupForm);
+            const response = await fetch(signupForm.action, {
+                method: 'POST',
+                body: formData
+            });
 
-        request.onload = function() {
-            submitButton.classList.remove('loading');
-            submitButton.disabled = false; // Re-enable the button
+            const data = await response.json();
 
-            if (request.status >= 200 && request.status < 400) {
-                var resp = JSON.parse(request.responseText);
-                if(resp.result === "success") {
-                    signupForm.style.display = 'none'; // Hide the form
-                    messageDiv.innerHTML = "Thank you for signing up! We will notify you when it's out. Happy New Year ✨";
-                    messageDiv.style.display = 'block'; // Show the message
-                } else {
-                    messageDiv.innerHTML = "Submission failed. Please try again.";
-                    messageDiv.style.display = 'block';
-                }
-            } else {
-                messageDiv.innerHTML = "Error submitting form. Please try again.";
+            if (data.result === "success") {
+                signupForm.style.display = 'none';
+                messageDiv.innerHTML = "Thank you for signing up! We'll notify you when it's ready. ✨";
                 messageDiv.style.display = 'block';
+            } else {
+                messageDiv.innerHTML = data.message || "Submission failed. Please try again.";
+                messageDiv.style.display = 'block';
+                grecaptcha.reset();
             }
-
-            submitButton.textContent = 'Sign up to be first to know'; // Reset button text
-        };
-
-        request.onerror = function() {
-            submitButton.classList.remove('loading');
-            submitButton.disabled = false; // Re-enable the button
-            submitButton.textContent = 'Sign up to be first to know'; // Reset button text
-
+        } catch (error) {
             messageDiv.innerHTML = "Error submitting form. Please check your connection and try again.";
             messageDiv.style.display = 'block';
-        };
-
-        request.send(formData);
+            grecaptcha.reset();
+        } finally {
+            submitButton.classList.remove('loading');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Sign up for early access';
+            isSubmitting = false;
+        }
     });
 });

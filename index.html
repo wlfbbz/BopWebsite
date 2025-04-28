@@ -29,6 +29,7 @@
     <meta name="twitter:title" content="Sign Up Page">
     <meta name="twitter:description" content="Join our community and stay updated!">
     <link rel="icon" href="https://i.imgur.com/eh3H5Nl.png" type="image/x-icon">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="signup-container">
@@ -42,10 +43,12 @@
                 A new way to discover music!
             </p>
         </div>-->
-        <form form method="post" action="https://script.google.com/macros/s/AKfycbzES-xdkiPaMc-5rkQfO5stbZbd1VuEGaSA8CObEWeykvN6fYgAi4bbNir9noEDI_5EtA/exec" id="signupForm" name="signup">
-            <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
-            <button type="submit">Sign up for early access</button>
-        </form>
+    <form method="post" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" id="signupForm" name="signup">
+    <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
+    <div class="g-recaptcha" data-sitekey="6LdM9iYrAAAAAM-10_Nq1ho9xvaYKZd_fsCAeqBB"></div>
+    <button type="submit">Sign up for early access</button>
+    </form>
+
         <div id="message" style="display: none;"></div>
     </div>
     <script src="script.js"></script>
