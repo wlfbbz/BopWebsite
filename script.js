@@ -10,7 +10,9 @@ signupForm.addEventListener('submit', async function(event) {
     submitButton.textContent = 'Submitting...';
 
     try {
+        const token = await grecaptcha.execute('6LeEMCorAAAAAGfwwqRxJlMPjIbLMDVysSYP1oi0', {action: 'submit'});
         const formData = new FormData(signupForm);
+        formData.append('recaptcha_token', token);  // Add token to form data
         const response = await fetch(signupForm.action, {
             method: 'POST',
             body: formData
@@ -20,7 +22,7 @@ signupForm.addEventListener('submit', async function(event) {
         
         if (data.result === "success") {
             signupForm.style.display = 'none';
-            messageDiv.innerHTML = "Thank you for signing up! We will notify you when it's out. Happy New Year ✨";
+            messageDiv.innerHTML = "Thank you for signing up! We will notify you when it's out.";
             messageDiv.style.display = 'block';
         } else {
             messageDiv.innerHTML = "Submission failed. Please try again.";
