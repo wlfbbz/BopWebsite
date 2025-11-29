@@ -20,11 +20,17 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.textContent = 'Submitting...';
 
         try {
+            // Check if grecaptcha is loaded
+            console.log('grecaptcha available?', typeof grecaptcha !== 'undefined');
+            
             // Get reCAPTCHA token
             const token = await grecaptcha.execute('6LeEMCorAAAAAGfwwqRxJlMPjIbLMDVysSYP1oi0', {action: 'submit'});
+            console.log('reCAPTCHA Token generated:', token);
+            console.log('Token length:', token.length);
             
             // Update hidden input with token
             document.getElementById('recaptcha_token').value = token;
+            console.log('Token added to hidden field');
             
             const formData = new FormData(signupForm);
             const response = await fetch(signupForm.action, {
